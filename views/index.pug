@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p My name is Lane 
+  button(type="button",class="btn btn-info", onclick="reduce()") sample button
+  div(id="use") take some away
+  a(href="/technology") technology page
+  br
+  a(href="/grid") grid page
+  br
+  a(href="/pick") random item page
+
+  script.
+    var current = 11
+    var quantity = 2
+    function reduce(){
+      current -= quantity
+      if (current < 0){
+        current = 0
+      }
+      document.getElementById("use").textContent = "reduced by " + quantity + " to " + current
+    }

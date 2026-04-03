@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  div(class="container-fluid")
+    div(class="row") 
+  
+  - 
+   class technology{
+      constructor(brand, price, category){
+        this.brand = brand
+        this.price = price
+        this.category = category
+      }
+    }
+    const results = [
+      new technology("Apple", 999, "Smartphone"),
+      new technology("Samsung", 899, "Smartphone"),
+      new technology("Dell", 1199, "Laptop")
+    ]
+  each value in results
+    div(class="col-sm-2") Brand: #{value.brand}, Price: $#{value.price}, Category: #{value.category}
