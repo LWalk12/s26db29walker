@@ -3,7 +3,7 @@
 
 ## Web apps assignment 10
 
-### Render server: https://s26wb29walker.onrender.com
+### Render server: https://s26db29walker.onrender.com
 
 
 ## Class: Tech(Brand(string), Price(number), Category(String))
