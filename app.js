@@ -4,11 +4,18 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var technologyRouter = require('./routes/technology');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
+var Technology = require('./models/technology');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -27,7 +34,7 @@ app.use('/users', usersRouter);
 app.use('/technology', technologyRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
-
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -46,3 +53,31 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+//server start
+async function recreateDB(){
+    // Delete everything
+    await Technology.deleteMany();
+
+    let instance1 = new Technology({brand: "Apple", price: 999, category: "Smartphone"});
+    let instance2 = new Technology({brand:"Samsung",price: 899, category:"Smartphone"});
+    let instance3 = new Technology({brand:"Dell",price: 1199, category: "Laptop"});
+    instance1.save().then(doc=>{
+        console.log("First object saved")}
+    ).catch(err=>{
+        console.error(err)
+    });
+    instance2.save().then(doc=>{
+        console.log("Second object saved")}
+    ).catch(err=>{
+        console.error(err)
+    });
+    instance3.save().then(doc=>{
+        console.log("Third object saved")}
+    ).catch(err=>{
+        console.error(err)
+    });
+}
+
+let reseed = true;
+if (reseed) {recreateDB();}
