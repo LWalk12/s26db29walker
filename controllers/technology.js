@@ -15,8 +15,20 @@ exports.technology_detail = function(req, res) {
 res.send('NOT IMPLEMENTED: Technology detail: ' + req.params.id);
 };
 
-exports.technology_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: Technology create POST');
+exports.technology_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new Technology();
+    document.brand = req.body.brand;
+    document.price = req.body.price;
+    document.category = req.body.category;
+    try{
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err){
+        res.status(500);
+        res.send('{"error": "' + err + '"}');
+    }
 };
 
 exports.technology_delete = function(req, res) {
