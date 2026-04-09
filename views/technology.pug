@@ -13,10 +13,7 @@ block content
         this.category = category
       }
     }
-    const results = [
-      new technology("Apple", 999, "Smartphone"),
-      new technology("Samsung", 899, "Smartphone"),
-      new technology("Dell", 1199, "Laptop")
-    ]
-  each value in results
+    const items = results
+  each value in items
     div(class="col-sm-2") Brand: #{value.brand}, Price: $#{value.price}, Category: #{value.category}
+
