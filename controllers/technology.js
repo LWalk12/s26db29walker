@@ -1,7 +1,14 @@
 var Technology = require('../models/technology');
 
-exports.technology_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: technology list');
+exports.technology_list = async function(req, res){
+    try{
+        theTechnology = await Technology.find();
+        res.send(theTechnology);
+    }
+    catch(err){
+        res.status(500);
+        res.send('{"error": ${err}}');
+    }
 };
 
 exports.technology_detail = function(req, res) {
