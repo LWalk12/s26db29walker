@@ -11,8 +11,16 @@ exports.technology_list = async function(req, res){
     }
 };
 
-exports.technology_detail = function(req, res) {
-res.send('NOT IMPLEMENTED: Technology detail: ' + req.params.id);
+exports.technology_detail = async function(req, res) {
+    console.log("detail" + req.params.id);
+    try{
+        var result = await Technology.findById(req.params.id);
+        res.send(result);
+    }
+    catch(error){
+        res.status(500);
+        res.send('{"error": document for id ${req.params.id} not found}');
+    }
 };
 
 exports.technology_create_post = async function(req, res) {
