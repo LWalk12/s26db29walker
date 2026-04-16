@@ -1,0 +1,40 @@
+extends layout 
+
+block content 
+  h1=title
+
+  - let technologyid = toShow._id
+  - let technology_brand = toShow.brand 
+  - let technology_price = toShow.price
+  - let technology_category = toShow.category
+
+  div.row(class='mb-3')
+    div.mr-1 ID is 
+    div #{technologyid}
+  - let actionid = "/resource/technologies/" + technologyid
+  form(id='TechnologyForm', action=actionid, method="PUT")
+    div.form-group
+      label.technologyAttr(for='brand') Technology brand
+      input#brand(type='text', name='brand', value=technology_brand)
+    div.form-group
+      label.technologyAttr(for='price') Technology price
+      input#price(type='text', name='price', value=technology_price)
+    div.form-group
+      label.technologyAttr(for='category') Technology category
+      input#category(type='text', name='category', value=technology_category)
+    input(type="submit")
+ 
+  script.
+   document.forms['TechnologyForm'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetch(event.target.action, {
+     method: 'PUT',
+     body: new URLSearchParams(new FormData(event.target))
+    }).then((resp) => {
+     return resp.text();
+    }).then((body) => {
+     alert("Update succeeded");
+    }).catch((error) => {
+     alert("Update failed " + error);
+    });
+   });
