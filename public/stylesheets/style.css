@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+.technologyAttr{
+  background-color: grey;
+  width:120px;
+}
