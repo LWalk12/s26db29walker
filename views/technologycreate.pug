@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
 
-  form(id='TechnologyForm', action="/resource/technologies", method="POST")
+  form(id='TechnologyForm', action="/resource/technology", method="POST")
     div.form-group
       label.technologyAttr(for='brand') Technology brand
       input#brand(type='text', name='brand')

@@ -11,7 +11,7 @@ block content
   div.row(class='mb-3')
     div.mr-1 ID is 
     div #{technologyid}
-  - let actionid = "/resource/technologies/" + technologyid
+  - let actionid = "/resource/technology/" + technologyid
   form(id='TechnologyForm', action=actionid, method="PUT")
     div.form-group
       label.technologyAttr(for='brand') Technology brand
