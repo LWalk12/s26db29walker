@@ -75,7 +75,7 @@ exports.technology_update_put = async function(req, res) {
 exports.technology_view_all_Page = async function(req, res){
     try{
         theTechnology = await Technology.find();
-        res.render('technology', { title: 'technology Search Results', results: theTechnology });
+        res.render('technology', { title: 'Technology Search Results', results: theTechnology });
     }
     catch(err){
         res.status(500);
@@ -87,7 +87,18 @@ exports.technology_view_one_Page = async function(req, res){
     console.log("single view for id " + req.query.id)
     try{
         result = await Technology.findById(req.query.id)
-        res.render('technologyDetail', {title: 'technology Detail',toShow: result});
+        res.render('technologyDetail', {title: 'Technology Detail',toShow: result});
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+exports.technology_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+        res.render('technologycreate', { title: 'Technology Create'});
     }
     catch(err){
         res.status(500)
