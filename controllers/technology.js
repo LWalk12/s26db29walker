@@ -117,3 +117,14 @@ exports.technology_update_Page = async function(req, res) {
         res.send(`{"error": "${err}"}`);
     }
 }
+
+exports.technology_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+        result = await Technology.findById(req.query.id)
+        res.render('technologydelete', { title: 'Technology Delete', toShow: result });
+    }catch(err){
+        res.status(500)
+        res.send(`{"error": "${err}"}`);
+    }
+};
