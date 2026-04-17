@@ -2,8 +2,9 @@ extends layout
 
 block content
   h1= title
+   
   div(class="container-fluid")
-    div(class="row") 
+    div(class="row")
   
   - 
    class technology{
@@ -13,7 +14,28 @@ block content
         this.category = category
       }
     }
-    const items = results
-  each value in items
-    div(class="col-sm-2") Brand: #{value.brand}, Price: $#{value.price}, Category: #{value.category}
+    
+  - let items = results
+  //each value in items
+  //  div(class="col-sm-2") Brand: #{value.brand}, Price: $#{value.price}, Category: #{value.category}
 
+ 
+
+  div(class="container-fluid")
+    div(class="row")
+      each item in items
+        - let del = `dispatch(\"/technology/delete?id=${item.id}\")`
+        - let update = `dispatch(\"/technology/update?id=${item.id}\")`
+        - let detail = `dispatch(\"/technology/detail?id=${item.id}\")`
+        - let create = `dispatch(\"/technology/create\")`
+       
+        div(class="row-sm-2", class="m-1") Item #{item.category} (#{item.brand}) is #{item.price}
+          button(class="btn btn-danger m-1", width=100 px, onclick=del) Delete
+          button(class="btn btn-secondary m-1", width=100 px, onclick=detail) Detail
+          button(class="btn btn-success m-1", width=100 px, onclick=create) Create
+          button(class="btn btn-success m-1", width=100 px, onclick=update) Update
+
+  script.
+   function dispatch(path){
+     window.location.href=path
+   }

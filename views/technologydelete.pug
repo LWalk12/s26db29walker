@@ -10,7 +10,8 @@ block content
     - let technology_brand = toShow.brand 
     - let technology_price = toShow.price
     - let technology_category = toShow.category
-    script let actionid = "#{actionid}"
+    script.
+     let actionid="#{actionid}"
     div 
       div.row
         div(class='technologyAttr mr-3') Technology ID is:
@@ -28,11 +29,11 @@ block content
     button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
     button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
 
-  script. 
+  script.
    function cancel() {
-    window.location.href = '/technology'
+    window.location.href='/technology'
    }
-  script. 
+  script.
    function deleteOnid() {
     console.log("starting delete")
     fetch(actionid, {
@@ -41,7 +42,7 @@ block content
      return resp.text(); // or resp.text() or whatever the server sends
     }).then((body) => {
      alert("Delete succeded")
-     window.location.href = '/technology'
+     window.location.href='/technology'
     }).catch((error) => {
      alert("Delete failed " + error)
     });
