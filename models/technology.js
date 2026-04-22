@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const technologySchema = mongoose.Schema({
     brand: String,
-    price: Number,
+    price: {type: Number, max: [4000, 'Too expensive']},
     category: String
 })
 
