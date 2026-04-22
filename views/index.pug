@@ -2,6 +2,17 @@ extends layout
 
 block content
   h1= title
+
+  if(!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register 
+  if(user)
+    p you are currently logged in as #{user.username}
+    a(href="/technology") Take me to Technology 
+    br
+    a(href="/logout") Logout
+
   p My name is Lane 
   button(type="button",class="btn btn-info", onclick="reduce()") sample button
   div(id="use") take some away
